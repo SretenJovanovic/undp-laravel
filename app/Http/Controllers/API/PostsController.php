@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
-use App\Models\User;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Http\Resources\UserResource;
-use App\Http\Resources\UserCollection;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\PostResource;
+use App\Http\Resources\PostCollection;
 
-class UsersController extends Controller
+class PostsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,11 +18,13 @@ class UsersController extends Controller
      */
     public function index()
     {
-
-        // $users = User::all();
-        $users = DB::table('users')->get();
-        // return $users;
-        return new UserCollection($users);
+         $posts = Post::all();
+        //  $posts = DB::table('posts')->get();
+        //  return $posts;
+        // 1.nacin
+        //  return PostResource::collection($posts);
+        // 2.nacin
+         return new PostCollection($posts);
     }
 
     /**
@@ -48,28 +51,29 @@ class UsersController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(Post $post)
     {
-        return new UserResource($user);
-        // $user = User::find($userid);
+        return new PostResource($post);
+        
+        // $post = Post::find($postid);
 
-        // if(is_null($user)){
-        //     return response()->json('There is no users', 404);
+        // if(is_null($post)){
+        //     return response()->json('There is no post', 404);
         // } else {
-        //     return $user;
+        //     return $post;
         // }
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit(Post $post)
     {
         //
     }
@@ -78,10 +82,10 @@ class UsersController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, Post $post)
     {
         //
     }
@@ -89,10 +93,10 @@ class UsersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(Post $post)
     {
         //
     }
